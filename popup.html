@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Blacklist Checking</title>
+<link rel="stylesheet" type="text/css" href="css/popup.css" />
+</head>
+<body>
+	<div>
+		<textarea id="key" placeholder="输入单词自动搜索" style="width: 220px;" class="key_input"
+			rows="2"></textarea>
+		<span id="status"></span>
+		<span id="suggest"></span>
+	</div>
+	<div>
+		<audio class="hidden" id="audio" src=""
+			data-url-basic="http://dict.youdao.com/dictvoice?audio="></audio>
+		<img class="hidden" id="phonetic" src="img/voice.png" width="17" height="17"
+			 data-audio="search" title="点击发音" />
+	</div>
+	<div id="holder"></div>
+	<div id="template" class="hidden">
+		<h5 class="header">翻译：</h5>
+		<ul data-nano-translation="">
+			<li data-nano-key-item=""></li>
+		</ul>
+		<div data-nano-basic="">
+			<h6 class="header ">发音：</h6>
+			<p data-nano-phonetic=""></p>
+			<h6 class="header">释义：</h6>
+			<ul data-nano-explains="">
+				<li data-nano-key-item=""></li>
+			</ul>
+		</div>
+		<h5 class="header">网络释义：</h5>
+		<ul data-nano-web="">
+			<li data-nano-key-item="">
+				<p data-nano-key=""></p>
+				<p data-nano-value=""></p>
+			</li>
+		</ul>
+		<a data-key-action="https://www.baidu.com/s?wd=%s&rsv_spt=1&rsv_iqid=0xa012476a0010d396&issp=1&f=8&rsv_bp=0&rsv_idx=2&ie=utf-8&tn=98012088_5_dg&ch=9&rsv_enter=1&inputT=1929" target="_blank" title="百度"><img src="img/icon-baidu.png" width="15px"></a>
+		<a target="_blank" data-key-action="https://www.google.co.jp/search?q=%s&oq=nihao&aqs=chrome..69i57j0l5.695j0j7&sourceid=chrome&ie=UTF-8" title="谷歌"><img src="img/icon-google.png" width="15px"></a>
+		<a target="_blank" data-key-action="http://www.wangpansou.cn/s.php?wp=0&ty=gn&op=gn&q=%s&q=%s" title="网盘"><img src="img/icon-pan.png" width="15px"></a>
+	</div>
+
+	<div id="testholder" class="hidden">
+		<h5 class="header">翻译：</h5>
+		<ul data-nano-translation="">
+			<li data-nano-key-item="">Zip code</li>
+		</ul>
+		<h5 class="header">详情：</h5>
+		<div data-nano-basic="" class='header2'>
+			<h6 class="header">发音：</h6>
+			<p data-nano-phonetic="">yóu biān</p>
+			<h6 class="header">释义：</h6>
+			<ul data-nano-explains="">
+				<li data-nano-key-item="">postcode</li>
+				<li data-nano-key-item="">zip code</li>
+				<li data-nano-key-item="">postal code</li>
+			</ul>
+		</div>
+		<h5 class="header">网络释义：</h5>
+		<ul data-nano-web="">
+			<li data-nano-key-item="">
+				<p data-nano-key="">邮编</p>
+				<p data-nano-value=""></p>
+			</li>
+			<li data-nano-key-item="">
+				<p data-nano-key="">住宅邮编</p>
+				<p data-nano-value=""></p>
+			</li>
+			<li data-nano-key-item="">
+				<p data-nano-key="">邮编查询</p>
+				<p data-nano-value=""></p>
+			</li>
+		</ul>
+
+	</div>
+	<h4 class="copy_right">Copyright©2015 heiliuer 简词典</h4>
+</body>
+<script src="jquery-2.0.0.min.js"></script>
+<script src="popup.js"></script>
+</html>
