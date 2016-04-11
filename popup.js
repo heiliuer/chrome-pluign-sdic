@@ -55,13 +55,16 @@ document.addEventListener('DOMContentLoaded', function() {
 		prevKey = key;
 		if (key) {
 			$status.text("正在查询");
+			$("[data-key-action]").each(function(){
+				$(this).attr("href",($(this).data("key-action")+"").replace(/%s/g,key));
+			});
 			timerToSearch = setTimeout(function() {
 				$.ajax({
-					url : "http://fanyi.youdao.com/openapi.do?keyfrom=mypydict&doctype=json&q="
-							+ key + "&version=1.2&key=27855339&type=data",
-					type : "get",
-					dataType : "json",
-					success : function(data) {
+				url : "http://fanyi.youdao.com/openapi.do?keyfrom=mypydict&doctype=json&q="
+				+ key + "&version=1.2&key=27855339&type=data",
+				type : "get",
+				dataType : "json",
+				success : function(data) {
 						$status.text("查询成功");
 						var $content = nano($("#template").clone(), data);
 						$content.find("p,li").each(function() {
@@ -70,9 +73,6 @@ document.addEventListener('DOMContentLoaded', function() {
 											.hide();
 								});
 						$("#holder").empty().append($content.html());
-						$("[data-key-action]").each(function(){
-							$(this).attr("href",($(this).data("key-action")+"").replace(/%s/g,key));
-						});
 					},
 					error : function() {
 						$status.text("查询失败");
