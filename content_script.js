@@ -102,6 +102,6 @@ var clearAds = function() {
 				}
 			});
 }
-$(window).load(clearAds);
-setInterval(clearAds, 1000);
-$(document).ready(clearAds)
+//$(window).load(clearAds);
+//setInterval(clearAds, 1000);
+//$(document).ready(clearAds);
