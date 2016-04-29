@@ -58,6 +58,15 @@ document.addEventListener('DOMContentLoaded', function() {
 			$("[data-key-action]").each(function(){
 				$(this).attr("href",($(this).data("key-action")+"").replace(/%s/g,key));
 			});
+			$("[data-hover-show-action]").each(function(){
+				var $self=$(this);
+				var $target=$($self.data("hover-show-action"));
+				$target.attr("src",encodeURI("http://qr.liantu.com/api.php?text="+key))
+
+				$(this).click(function () {
+					$target.toggle()
+				})
+			});
 			timerToSearch = setTimeout(function() {
 				$.ajax({
 				url : "http://fanyi.youdao.com/openapi.do?keyfrom=mypydict&doctype=json&q="
