@@ -61,7 +61,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			$("[data-hover-show-action]").each(function(){
 				var $self=$(this);
 				var $target=$($self.data("hover-show-action"));
-				$target.attr("src",encodeURI("http://qr.liantu.com/api.php?text="+key))
+				var imgURI=encodeURI("http://qr.liantu.com/api.php?text="+key)
+				$.get(imgURI,function () {
+					$target.attr("src",imgURI)
+				})
 
 				$(this).click(function () {
 					$target.toggle()
