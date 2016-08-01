@@ -112,4 +112,22 @@ $(function () {
         $("#rtloginform #password").val("1234");
         $("#rtloginform #btnRtSubmit").click();
     }
+    ;
+
+    //设置企业号密码
+    if (isDomain("qq.com")) {
+        setTimeout(function () {
+            try {
+                var $docFrame = $(window.frames[0].document);
+                $docFrame.ready(function () {
+                    $docFrame.find("[type='password']").val("wanghao0923").trigger("change input");
+                    $docFrame.find(".mod-set-pwd__submit").removeClass("button-primary_disabled")
+                });
+            } catch (e) {
+                console.error(e);
+            }
+        }, 2100);
+    }
+
+
 })
