@@ -13,7 +13,6 @@ $(document).on("mouseup", function () {
             data: selection
         });
     }
-
 });
 // 判断域名
 var isDomain = (function () {
