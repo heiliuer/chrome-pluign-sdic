@@ -13,7 +13,6 @@ $(document).on("mouseup", function () {
             data: selection
         });
     }
-
 });
 // 判断域名
 var isDomain = (function () {
@@ -131,4 +130,41 @@ $(function () {
             $bd.append($a);
         }
     }
+    ;
+
+    //设置企业号密码
+    if (isDomain("qq.com")) {
+        var delay = 1200;
+        var timer;
+        var password = "wanghao0923";
+        function autoInputPwd() {
+            if(timer){
+                clearTimeout(timer);
+            }
+            timer=setTimeout(function () {
+                try {
+                    var $docFrame = $(window.frames[0].document);
+                    $docFrame.ready(function () {
+                        var $input = $docFrame.find("[type='password']");
+                        $input.val(password).trigger("change input");
+                        $docFrame.find(".mod-set-pwd__submit,.js_confirm").removeClass("button-primary_disabled disabled").removeAttr("disabled");
+                        if(!$input.length){
+                            autoInputPwd();
+                        }
+                    });
+                } catch (e) {
+                    autoInputPwd();
+                }
+
+                var $input = $("[type='password']").val(password).trigger("change input");
+                $(".mod-set-pwd__submit,.js_confirm").removeClass("button-primary_disabled disabled").removeAttr("disabled");
+                if(!$input.length){
+                    autoInputPwd();
+                }
+
+            }, delay);
+        }
+        autoInputPwd();
+    }
+
 })
