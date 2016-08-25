@@ -119,7 +119,7 @@ $(function () {
         var $modNat = $(".mod-set.mod-nat");
         if ($modNat.length) {
             function get$a(name) {
-                return $("<a class='btn btn-primary btn-l' style='margin: 5px 5px 0 0;'>").append($("<span style='width: 200px;'>").text(name));
+                return $("<a class='btn btn-primary btn-l' style='margin: 14px 13px 0 0;'>").append($("<span style='width: 200px;'>").text(name));
             }
             var $a = get$a("所有重新连接");
             $a.attr("onclick",'$(".reConWan").click().each(function () { $(".d-ft [data-id=ok]").click() });');
