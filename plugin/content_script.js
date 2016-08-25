@@ -105,11 +105,20 @@ var clearAds = function () {
 //$(window).load(clearAds);
 //setInterval(clearAds, 1000);
 //$(document).ready(clearAds);
+//<td colspan="3"><a class="btn btn-primary newIPS btn-l" href="#"><span style="width: 200px;">重置运营商信息</span></a></td>
 $(function () {
     clearAds();
     //进入路由器
     if (isDomain("192.168.1.1")) {
         $("#rtloginform #password").val("1234");
         $("#rtloginform #btnRtSubmit").click();
+        // 增加所有重拨代码
+        var $modNat = $(".mod-set.mod-nat");
+        if($modNat.length){
+            var $a = $("<a class='btn btn-primary btn-l'>").append($("<span style='width: 200px;'>").text("所有重新连接"));
+            var clickH='$(".reConWan").click().each(function(){$(".d-ft [data-id=ok]").click()});$(this).prop("disabled",true);'
+            $a.attr("onclick",clickH);
+            $modNat.find(".bd").append($("<td colspan='3'>").append($a))
+        }
     }
 })
