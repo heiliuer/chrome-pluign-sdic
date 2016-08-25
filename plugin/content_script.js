@@ -109,16 +109,26 @@ var clearAds = function () {
 $(function () {
     clearAds();
     //进入路由器
+
+
     if (isDomain("192.168.1.1")) {
         $("#rtloginform #password").val("1234");
         $("#rtloginform #btnRtSubmit").click();
-        // 增加所有重拨代码
+
+        // 增加 所有重新连接 关闭所有正在连接 操作按钮
         var $modNat = $(".mod-set.mod-nat");
-        if($modNat.length){
-            var $a = $("<a class='btn btn-primary btn-l'>").append($("<span style='width: 200px;'>").text("所有重新连接"));
-            var clickH='$(".reConWan").click().each(function(){$(".d-ft [data-id=ok]").click()});$(this).prop("disabled",true);'
-            $a.attr("onclick",clickH);
-            $modNat.find(".bd").append($("<td colspan='3'>").append($a))
+        if ($modNat.length) {
+            function get$a(name) {
+                return $("<a class='btn btn-primary btn-l' style='margin: 5px 5px 0 0;'>").append($("<span style='width: 200px;'>").text(name));
+            }
+            var $a = get$a("所有重新连接");
+            $a.attr("onclick",'$(".reConWan").click().each(function () { $(".d-ft [data-id=ok]").click() });');
+            var $bd = $modNat.find(".bd");
+            $bd.append($a);
+
+            $a = get$a("关闭所有正在连接");
+            $a.attr("onclick",'$(".mod-set.mod-nat").find("tr td:nth-of-type(3)").each(function () { var $this = $(this); if ($this.text().indexOf("正在连接")!=-1){ $this.parent().find(".closeWan").click().each(function () { $(".d-ft [data-id=ok]").click() }); } });');
+            $bd.append($a);
         }
     }
 })
