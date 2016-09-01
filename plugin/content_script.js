@@ -134,7 +134,7 @@ $(function () {
 
     //设置企业号密码
     if (isDomain("qq.com")) {
-        var delay = 1200;
+        var delay = 400;
         var timer;
         var password = "wanghao0923";
         function autoInputPwd() {
@@ -161,10 +161,9 @@ $(function () {
                 if(!$input.length){
                     autoInputPwd();
                 }
-
-                //解决顶部提示宽度撑满，遮住连接的问题
-                $(".page_tips").css({width:"200px",margin:"0 auto"});
             }, delay);
+            //解决顶部提示宽度撑满，遮住连接的问题
+            $(".page_tips").css({width:"200px",margin:"0 auto"});
         }
         autoInputPwd();
     }
