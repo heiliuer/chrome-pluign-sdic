@@ -162,6 +162,8 @@ $(function () {
                     autoInputPwd();
                 }
 
+                //解决顶部提示宽度撑满，遮住连接的问题
+                $(".page_tips").css({width:"200px",margin:"0 auto"});
             }, delay);
         }
         autoInputPwd();
