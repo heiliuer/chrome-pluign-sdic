@@ -107,9 +107,8 @@ var clearAds = function () {
 //<td colspan="3"><a class="btn btn-primary newIPS btn-l" href="#"><span style="width: 200px;">重置运营商信息</span></a></td>
 $(function () {
     clearAds();
+
     //进入路由器
-
-
     if (isDomain("192.168.1.1")) {
         $("#rtloginform #password").val("1234");
         $("#rtloginform #btnRtSubmit").click();
@@ -120,13 +119,14 @@ $(function () {
             function get$a(name) {
                 return $("<a class='btn btn-primary btn-l' style='margin: 14px 13px 0 0;'>").append($("<span style='width: 200px;'>").text(name));
             }
+
             var $a = get$a("所有重新连接");
-            $a.attr("onclick",'$(".reConWan").click().each(function () { $(".d-ft [data-id=ok]").click() });');
+            $a.attr("onclick", '$(".reConWan").click().each(function () { $(".d-ft [data-id=ok]").click() });');
             var $bd = $modNat.find(".bd");
             $bd.append($a);
 
             $a = get$a("关闭所有正在连接");
-            $a.attr("onclick",'$(".mod-set.mod-nat").find("tr td:nth-of-type(3)").each(function () { var $this = $(this); if ($this.text().indexOf("正在连接")!=-1){ $this.parent().find(".closeWan").click().each(function () { $(".d-ft [data-id=ok]").click() }); } });');
+            $a.attr("onclick", '$(".mod-set.mod-nat").find("tr td:nth-of-type(3)").each(function () { var $this = $(this); if ($this.text().indexOf("正在连接")!=-1){ $this.parent().find(".closeWan").click().each(function () { $(".d-ft [data-id=ok]").click() }); } });');
             $bd.append($a);
         }
     }
@@ -137,18 +137,19 @@ $(function () {
         var delay = 400;
         var timer;
         var password = "wanghao0923";
+
         function autoInputPwd() {
-            if(timer){
+            if (timer) {
                 clearTimeout(timer);
             }
-            timer=setTimeout(function () {
+            timer = setTimeout(function () {
                 try {
                     var $docFrame = $(window.frames[0].document);
                     $docFrame.ready(function () {
                         var $input = $docFrame.find("[type='password']");
                         $input.val(password).trigger("change input");
                         $docFrame.find(".mod-set-pwd__submit,.js_confirm").removeClass("button-primary_disabled disabled").removeAttr("disabled");
-                        if(!$input.length){
+                        if (!$input.length) {
                             autoInputPwd();
                         }
                     });
@@ -158,14 +159,38 @@ $(function () {
 
                 var $input = $("[type='password']").val(password).trigger("change input");
                 $(".mod-set-pwd__submit,.js_confirm").removeClass("button-primary_disabled disabled").removeAttr("disabled");
-                if(!$input.length){
+                if (!$input.length) {
                     autoInputPwd();
                 }
             }, delay);
             //解决顶部提示宽度撑满，遮住连接的问题
-            $(".page_tips").css({width:"200px",margin:"0 auto"});
+            $(".page_tips").css({width: "200px", margin: "0 auto"});
         }
+
         autoInputPwd();
     }
+
+
+    //消除百度搜索结果广告条目
+    if (isDomain("baidu.com")) {
+        //垃圾推广广告
+        //带v1 v2 v3
+        function clearBaiduAd() {
+            $("#content_left>div").map(function () {
+                if ($(this).find("[class*=c-icon-v]").length) {
+                    $(this).remove();
+
+                }
+            });
+        }
+        clearBaiduAd();
+        var inClear=setInterval(clearBaiduAd,100);
+        setTimeout(function () {
+            clearInterval(inClear)
+        },100*10);
+
+
+    }
+
 
 })
