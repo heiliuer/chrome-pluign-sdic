@@ -172,24 +172,66 @@ $(function () {
 
 
     //消除百度搜索结果广告条目
+
+
     if (isDomain("baidu.com")) {
         //垃圾推广广告
         //带v1 v2 v3
+        var num = 0;
+        var pageNum = 0;
+
+        function inAtTime(func, inT, timeO, clearFunc) {
+            var tin = setInterval(func, inT);
+            var ttime = setTimeout(function () {
+                clearInterval(tin);
+                tin = null;
+                ttime = null;
+                clearFunc && clearFunc();
+            }, timeO);
+            return {
+                clear: function () {
+                    tin && clearInterval(tin);
+                    ttime && clearTimeout(ttime);
+                    //clearFunc && clearFunc();
+                }
+            }
+        }
+
         function clearBaiduAd() {
             $("#content_left>div").map(function () {
                 if ($(this).find("[class*=c-icon-v]").length) {
+                    ++num
+                    pageNum++
                     $(this).remove();
-
                 }
             });
         }
-        clearBaiduAd();
-        var inClear=setInterval(clearBaiduAd,100);
-        setTimeout(function () {
-            clearInterval(inClear)
-        },100*10);
 
+        function onClearAPage() {
+            console.log("%c删除百度推广广告 总数[%d] 本页[%d]", "font-size:25px;color:#19652a;", num, pageNum);
+            pageNum = 0
+        }
 
+        var tpageInA = inAtTime(clearBaiduAd, 120, 120 * 10, onClearAPage);
+
+        // function lClick() {
+        //     $("#container #page").off("click.i").on("click.i", function () {
+        //         // console.log("page click")
+        //         tInAtTime && tInAtTime.clear()
+        //         tInAtTime = inAtTime(lClick, 100, 100 * 30)
+        //         tpageInA && tpageInA.clear()
+        //         tpageInA = inAtTime(clearBaiduAd, 120, 120 * 10, onClearAPage);
+        //     });
+        // }
+        //
+        // var tInAtTime = inAtTime(lClick, 100, 100 * 30)
+
+        $('#wrapper_wrapper').bind("DOMSubtreeModified",function(){
+            // tInAtTime && tInAtTime.clear()
+            // tInAtTime = inAtTime(lClick, 100, 100 * 30)
+            tpageInA && tpageInA.clear()
+            tpageInA = inAtTime(clearBaiduAd, 120, 120 * 10, onClearAPage);
+        });
     }
 
 
