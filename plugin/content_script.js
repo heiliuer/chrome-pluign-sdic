@@ -226,13 +226,18 @@ $(function () {
         //
         // var tInAtTime = inAtTime(lClick, 100, 100 * 30)
 
-        $('#wrapper_wrapper').bind("DOMSubtreeModified",function(){
+        $('#wrapper_wrapper').bind("DOMSubtreeModified", function () {
             // tInAtTime && tInAtTime.clear()
             // tInAtTime = inAtTime(lClick, 100, 100 * 30)
             tpageInA && tpageInA.clear()
             tpageInA = inAtTime(clearBaiduAd, 120, 120 * 10, onClearAPage);
         });
+
     }
 
+
+    //影藏滑动条 宽度为0
+    // var style="::-webkit-scrollbar {width: 1px;height: 17px;background-color: tranparent;border: none  }"
+    // $("body").append($("style").html(style));
 
 })
