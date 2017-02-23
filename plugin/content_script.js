@@ -174,7 +174,9 @@ $(function () {
     //消除百度搜索结果广告条目
 
 
-    if (isDomain("baidu.com")) {
+    var enable_baidu_adblock = false;
+
+    if (isDomain("baidu.com") && enable_baidu_adblock) {
         //垃圾推广广告
         //带v1 v2 v3
         var num = 0;
