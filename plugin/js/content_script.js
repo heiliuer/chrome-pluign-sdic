@@ -196,7 +196,7 @@ $(function () {
     if (isDomain("qq.com")) {
         var delay = 400;
         var timer;
-        var password = "xxxx";
+        var password = "wanghao0923";
 
         function autoInputPwd() {
             if (timer) {
