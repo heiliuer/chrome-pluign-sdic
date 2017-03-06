@@ -8,7 +8,7 @@
 
 var currentMouse$dom;
 
-$(document).click(function (event) {
+$(document).on("mouseover",function (event) {
     currentMouse$dom = $(event.target)
 })
 
@@ -196,7 +196,7 @@ $(function () {
     if (isDomain("qq.com")) {
         var delay = 400;
         var timer;
-        var password = "wanghao0923";
+        var password = "xxxx";
 
         function autoInputPwd() {
             if (timer) {
