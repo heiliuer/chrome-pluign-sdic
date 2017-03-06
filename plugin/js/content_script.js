@@ -5,6 +5,15 @@
         return window.getSelection().toString();
     }
 }
+
+var ctrlKey = 17, cmdKey = 91;
+
+$(document).keydown(function (e) {
+    if (e.keyCode == ctrlKey || e.keyCode == cmdKey) {
+        console.log(ctrlKey);
+    }
+});
+
 $(document).on("mouseup", function () {
     var selection = selectText();
     if (selection) {
@@ -14,6 +23,7 @@ $(document).on("mouseup", function () {
         });
     }
 });
+
 // 判断域名
 var isDomain = (function () {
     var cDomain = document.domain;
