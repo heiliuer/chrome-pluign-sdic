@@ -190,13 +190,12 @@ $(function () {
             $bd.append($a);
         }
     }
-    ;
 
     //设置企业号密码
     if (isDomain("qq.com")) {
         var delay = 400;
         var timer;
-        var password = "wanghao0923";
+        var password = "";
 
         function autoInputPwd() {
             if (timer) {
