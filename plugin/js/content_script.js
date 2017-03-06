@@ -8,11 +8,45 @@
 
 var ctrlKey = 17, cmdKey = 91;
 
+var styles = "width: 30%;max-width: 400px;text-align: center;background-color: #FFFFFF;position: fixed;left: 0;top: 0;border-radius: 4px;opacity: 0.9;color: #E41B1B;font-weight: bold;font-size: 19px;";
+
+function getTip$dom() {
+    var $dom = $("#com_heiliuer_sdic_tip");
+    if (!$dom.length) {
+        $dom = $("<div id='com_heiliuer_sdic_tip' style='" +
+            styles +
+            "'>").prependTo($("body"));
+    }
+    return $dom;
+}
+
+var timeout;
 $(document).keydown(function (e) {
     if (e.keyCode == ctrlKey || e.keyCode == cmdKey) {
-        console.log(ctrlKey);
+        var key = selectText();
+        console.log(key);
+        $.ajax({
+            url: "http://fanyi.youdao.com/openapi.do?keyfrom=mypydict&doctype=json&q=" + key + "&version=1.2&key=27855339&type=data",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                var translation = (data.translation || []).join(" ");
+                var $dom = getTip$dom();
+                $dom.text(translation).fadeIn();
+                if (timeout) {
+                    clearTimeout(timeout);
+                }
+                timeout = setTimeout(function () {
+                    $dom.fadeOut();
+                }, 2000);
+            },
+            error: function () {
+
+            }
+        });
     }
 });
+
 
 $(document).on("mouseup", function () {
     var selection = selectText();
@@ -83,6 +117,7 @@ var blockConfig = {
     hrefs: ["ccc.x.jd.com", "tk.859377"/* 全屏流氓广告 */, "sax.sina.com.cn"],
     srcs: ["to3.ysjwj.com", "sax.sina.com.cn", "tk.859377"]
 };
+
 var clearAds = function () {
     // 通用过滤
     adHandler.removes(blockConfig.commom);
