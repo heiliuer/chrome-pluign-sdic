@@ -6,44 +6,59 @@
     }
 }
 
-var ctrlKey = 17, cmdKey = 91;
+var currentMouse$dom;
 
-var styles = "width: 30%;max-width: 400px;text-align: center;background-color: #FFFFFF;position: fixed;left: 0;top: 0;border-radius: 4px;opacity: 0.9;color: #E41B1B;font-weight: bold;font-size: 19px;";
+$(document).click(function (event) {
+    currentMouse$dom = $(event.target)
+})
+
+
+var ctrlKey = 17,escKey=27, cmdKey = 91;
+
+var styles = "width: 30%;display:none;max-width: 400px;text-align: center;position: fixed;left: 0px;top: 0px;opacity: 0.9;color: rgb(228, 27, 27);font-weight: bold;font-size: 16px;background-color: rgb(255, 255, 255);z-index: 100000;padding: 10px;";
 
 function getTip$dom() {
     var $dom = $("#com_heiliuer_sdic_tip");
     if (!$dom.length) {
         $dom = $("<div id='com_heiliuer_sdic_tip' style='" +
             styles +
-            "'>").prependTo($("body"));
+            "'>").append("<p style='color: #333'></p><p></p>").prependTo($("body"));
     }
     return $dom;
 }
 
 var timeout;
 $(document).keydown(function (e) {
+    if (e.keyCode == escKey ){
+        getTip$dom().fadeOut();
+    }
     if (e.keyCode == ctrlKey || e.keyCode == cmdKey) {
-        var key = selectText();
-        console.log(key);
-        $.ajax({
-            url: "http://fanyi.youdao.com/openapi.do?keyfrom=mypydict&doctype=json&q=" + key + "&version=1.2&key=27855339&type=data",
-            type: "get",
-            dataType: "json",
-            success: function (data) {
-                var translation = (data.translation || []).join(" ");
-                var $dom = getTip$dom();
-                $dom.text(translation).fadeIn();
-                if (timeout) {
-                    clearTimeout(timeout);
-                }
-                timeout = setTimeout(function () {
-                    $dom.fadeOut();
-                }, 2000);
-            },
-            error: function () {
+        var key = selectText() || (currentMouse$dom && currentMouse$dom.text());
 
+        if (key == "") {
+            return;
+        }
+
+        chrome.runtime.sendMessage({
+            type: "search_and_add_dom",
+            data: key
+        }, function (response) {
+            console.log("response:", response)
+            var translation = response.translation;
+            var $dom = getTip$dom();
+            $dom.find("p:eq(0)").text(key)
+            $dom.find("p:eq(1)").text(translation)
+            $dom.fadeIn();
+            if (timeout) {
+                clearTimeout(timeout);
             }
+            var prevTime = 100 * translation.length;
+            timeout = setTimeout(function () {
+                $dom.fadeOut();
+            }, Math.min(30 * 1000, Math.max(2 * 1000, prevTime)));
         });
+
+
     }
 });
 
