@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<div id="com_heiliuer_sdic_tip" style="">
+/**
+ * Created by heiliuer on 2017/3/8.
+ */
++function (global) {
+    global.dom_tips = `<div id="com_heiliuer_sdic_tip" style="">
     <style>
         #com_heiliuer_sdic_tip {
             min-width: 250px;
@@ -72,6 +69,6 @@
         phonetic.onmouseover = com_heiliuer_sdic_speak;
         phonetic.onclick = com_heiliuer_sdic_speak;
     </script>
-</div>
-</body>
-</html>
+</div>`;
+
+}(window)

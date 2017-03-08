@@ -33,6 +33,7 @@
       ],
       "js": [
         "js/jquery-2.0.0.min.js",
+        "js/content_script_tmpl.js",
         "js/content_script.js"
       ],
       "run_at": "document_start"
