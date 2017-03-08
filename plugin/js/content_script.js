@@ -46,11 +46,13 @@
                 $dom.find("p:eq(0)").text(key)
                 $dom.find("p:eq(1)").text(translation)
                 $dom.fadeIn();
-                $("#com_heiliuer_sdic_audio").attr("data-audio", translation);
+
+                let isKeyEnglish = (key.match(/^[a-zA-Z0-9\s?><;,{}[\]\-_+=!@#$%\^&*|']*$/)||[]).length>0;
+                $("#com_heiliuer_sdic_audio").attr("data-audio", isKeyEnglish?key:translation);
                 if (timeout) {
                     clearTimeout(timeout);
                 }
-                var prevTime = 100 * translation.length;
+                var prevTime = 100 * Math.max(translation.length,key.length);
                 timeout = setTimeout(function () {
                     $dom.fadeOut();
                 }, Math.min(30 * 1000, Math.max(2 * 1000, prevTime)));
