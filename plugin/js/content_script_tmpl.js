@@ -65,7 +65,7 @@
             audio.src = dataset["urlBasic"] + audioKey;
             audio.play();
         }
-        let phonetic = document.querySelector("#phonetic");
+        var  phonetic = document.querySelector("#phonetic");
         phonetic.onmouseover = com_heiliuer_sdic_speak;
         phonetic.onclick = com_heiliuer_sdic_speak;
     </script>

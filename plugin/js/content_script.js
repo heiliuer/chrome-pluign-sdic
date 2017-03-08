@@ -26,38 +26,50 @@
         return $dom;
     }
 
-    var timeout;
+    var timeoutHideTip, timeoutHandlerCtrl;
+
+    function handlerCtrl() {
+        var key = getSelectText() || (currentMouse$dom && currentMouse$dom.text() || currentMouse$dom.attr("title")) || "";
+        if (key == "") {
+        }
+        chrome.runtime.sendMessage({
+            type: "search_and_add_dom",
+            data: key
+        }, function (response) {
+            // console.log("response:", response)
+            var translation = response.translation;
+            var $dom = getTip$dom();
+            $dom.find("p:eq(0)").text(key)
+            $dom.find("p:eq(1)").text(translation)
+            $dom.fadeIn();
+
+            var isKeyEnglish = (key.match(/^[a-zA-Z0-9\s?><;,{}[\]\-_+=!@#$%\^&*|']*$/) || []).length > 0;
+            $("#com_heiliuer_sdic_audio").attr("data-audio", isKeyEnglish ? key : translation);
+            if (timeoutHideTip) {
+                clearTimeout(timeoutHideTip);
+            }
+            var prevTime = 150 * Math.max(translation.length, key.length);
+            timeoutHideTip = setTimeout(function () {
+                $dom.fadeOut();
+            }, Math.min(30 * 1000, Math.max(2 * 1000, prevTime)));
+        });
+    }
+
     $(document).keydown(function (e) {
         if (e.keyCode == escKey) {
             getTip$dom().fadeOut();
         }
         if (e.keyCode == ctrlKey || e.keyCode == cmdKey) {
-            var key = getSelectText() || (currentMouse$dom && currentMouse$dom.text() || currentMouse$dom.attr("title")) || "";
-            if (key == "") {
-                return;
+            console.log("ctrl ")
+            if (timeoutHandlerCtrl) {
+                clearTimeout(timeoutHandlerCtrl);
             }
-            chrome.runtime.sendMessage({
-                type: "search_and_add_dom",
-                data: key
-            }, function (response) {
-                // console.log("response:", response)
-                var translation = response.translation;
-                var $dom = getTip$dom();
-                $dom.find("p:eq(0)").text(key)
-                $dom.find("p:eq(1)").text(translation)
-                $dom.fadeIn();
-
-                let isKeyEnglish = (key.match(/^[a-zA-Z0-9\s?><;,{}[\]\-_+=!@#$%\^&*|']*$/)||[]).length>0;
-                $("#com_heiliuer_sdic_audio").attr("data-audio", isKeyEnglish?key:translation);
-                if (timeout) {
-                    clearTimeout(timeout);
-                }
-                var prevTime = 100 * Math.max(translation.length,key.length);
-                timeout = setTimeout(function () {
-                    $dom.fadeOut();
-                }, Math.min(30 * 1000, Math.max(2 * 1000, prevTime)));
-            });
-
+            timeoutHandlerCtrl = setTimeout(handlerCtrl, 300);
+        } else {
+            console.log("other ", e.keyCode)
+            if (timeoutHandlerCtrl) {
+                clearTimeout(timeoutHandlerCtrl);
+            }
         }
     });
 

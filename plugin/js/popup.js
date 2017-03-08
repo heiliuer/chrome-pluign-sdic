@@ -79,6 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				success : function(data) {
 						$status.text("查询成功");
 						var $content = nano($("#template").clone(), data);
+
 						$content.find("p,li").each(function() {
 									var $this = $(this);
 									$.trim($this.html()) ? $this.show() : $this
