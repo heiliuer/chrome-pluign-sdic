@@ -16,7 +16,7 @@
             font-weight: bold;
             font-size: 16px;
             line-height: 1.1em;
-            z-index: 100000;
+            z-index: 2147483647;
             padding: 5px;
             box-shadow: rgb(204, 204, 204) 6px 6px 4px;
             /*display: none;*/
