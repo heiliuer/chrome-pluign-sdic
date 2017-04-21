@@ -66,7 +66,7 @@
             }
             timeoutHandlerCtrl = setTimeout(handlerCtrl, 300);
         } else {
-            console.log("other ", e.keyCode)
+            // console.log("other ", e.keyCode)
             if (timeoutHandlerCtrl) {
                 clearTimeout(timeoutHandlerCtrl);
             }

@@ -12,15 +12,15 @@
             left: 0px;
             top: 0px;
             opacity: 0.9;
-            color: rgb(228, 27, 27);
+            color: rgb(228, 27, 27) !important;
             font-weight: bold;
             font-size: 16px;
             line-height: 1.1em;
-            z-index: 2147483647;
+            z-index: 2147483647;//最大值
             padding: 5px;
             box-shadow: rgb(204, 204, 204) 6px 6px 4px;
             /*display: none;*/
-            background-color: rgb(255, 255, 255);
+            background-color: rgb(255, 255, 255) !important;
         }
 
         #com_heiliuer_sdic_tip p {
@@ -29,17 +29,16 @@
         }
 
         #com_heiliuer_sdic_tip p:nth-of-type(1) {
-            color: #333;
+            color: #333 !important;
         }
 
         #com_heiliuer_sdic_tip p:nth-of-type(2) {
         }
 
         #phonetic{
-            color: #222;
             font-weight: normal;
             font-size: 12px;
-            color: #fff;
+            color: #fff !important;
             background: #3c3c3c;
             padding: 2px;
             border-radius: 2px;
@@ -65,7 +64,7 @@
             audio.src = dataset["urlBasic"] + audioKey;
             audio.play();
         }
-        var  phonetic = document.querySelector("#phonetic");
+        var phonetic = document.querySelector("#phonetic");
         phonetic.onmouseover = com_heiliuer_sdic_speak;
         phonetic.onclick = com_heiliuer_sdic_speak;
     </script>
