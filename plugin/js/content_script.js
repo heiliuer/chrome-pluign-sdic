@@ -60,7 +60,7 @@
             getTip$dom().fadeOut();
         }
         if (e.keyCode == ctrlKey || e.keyCode == cmdKey) {
-            console.log("ctrl ")
+            // console.log("ctrl ")
             if (timeoutHandlerCtrl) {
                 clearTimeout(timeoutHandlerCtrl);
             }
@@ -72,6 +72,13 @@
             }
         }
     });
+
+    $(document).on("click", "#com_heiliuer_sdic_tip .close", function () {
+        getTip$dom().fadeOut()
+    });
+
+    document.querySelector("").addEventListener('click', function () {
+    })
 
     $(document).on("mouseup", function () {
         var selection = getSelectText();

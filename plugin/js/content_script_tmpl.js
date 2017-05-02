@@ -16,8 +16,8 @@
             font-weight: bold;
             font-size: 16px;
             line-height: 1.1em;
-            z-index: 2147483647;//最大值
-            padding: 5px;
+            z-index: 2147483647;
+        / / 最大值 padding: 5 px;
             box-shadow: rgb(204, 204, 204) 6px 6px 4px;
             /*display: none;*/
             background-color: rgb(255, 255, 255) !important;
@@ -36,7 +36,22 @@
         #com_heiliuer_sdic_tip p:nth-of-type(2) {
         }
 
-        #phonetic{
+        #com_heiliuer_sdic_tip .close {
+            position: absolute;
+            right: 3px;
+            top: 7px;
+            border-radius: 50%;
+            width: 1em;
+            height: 1em;
+            display: inline-block;
+            text-align: center;
+            line-height: 1em;
+            color: #6f6f6f;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        #phonetic {
             font-weight: normal;
             font-size: 12px;
             color: #fff !important;
@@ -47,6 +62,8 @@
 
         }
     </style>
+    
+    <span class="close">X</span>
 
     <p>电子/电工</p>
     <p>Electrical/electronic</p>

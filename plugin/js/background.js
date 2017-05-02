@@ -29,7 +29,7 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
                 dataType: "json",
                 success: function (data) {
                     var translation = (data.translation || []).join(" ");
-                    console.log("search_and_add_dom success");
+                    // console.log("search_and_add_dom success");
                     sendResponse({translation: translation})
                 },
                 error: function () {
