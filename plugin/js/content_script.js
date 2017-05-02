@@ -77,9 +77,6 @@
         getTip$dom().fadeOut()
     });
 
-    document.querySelector("").addEventListener('click', function () {
-    })
-
     $(document).on("mouseup", function () {
         var selection = getSelectText();
         if (selection) {
