@@ -21,6 +21,7 @@
             box-shadow: rgb(204, 204, 204) 6px 6px 4px;
             /*display: none;*/
             background-color: rgb(255, 255, 255) !important;
+            padding: 7px;
         }
 
         #com_heiliuer_sdic_tip p {
