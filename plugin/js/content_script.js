@@ -41,6 +41,7 @@
             var $dom = getTip$dom();
             $dom.find("p:eq(0)").text(key)
             $dom.find("p:eq(1)").text(translation)
+            $dom.find("p:eq(2)").text(((response.data || {}).basic || {}).phonetic)
             $dom.fadeIn();
 
             var isKeyEnglish = (key.match(/^[a-zA-Z0-9\s?><;,{}[\]\-_+=!@#$%\^&*|']*$/) || []).length > 0;
