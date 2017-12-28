@@ -23,10 +23,10 @@
         if (!$dom.length) {
             $dom = $(global.dom_tips).prependTo($("body"));
         }
-        return $dom;
+        return $dom.hide();
     }
 
-    var timeoutHideTip, timeoutHandlerCtrl;
+    var timeoutHideTip, timeoutHandlerCtrl, timeoutObj;
 
     function handlerCtrl() {
         var key = getSelectText() || (currentMouse$dom && currentMouse$dom.text() || currentMouse$dom.attr("title")) || "";
@@ -50,11 +50,31 @@
                 clearTimeout(timeoutHideTip);
             }
             var prevTime = 150 * Math.max(translation.length, key.length);
-            timeoutHideTip = setTimeout(function () {
-                $dom.fadeOut();
-            }, Math.min(30 * 1000, Math.max(2 * 1000, prevTime)));
+            timeoutObj = {
+                callback: function () {
+                    getTip$dom().fadeOut();
+                    timeoutHideTip = null;
+                },
+                delay: Math.min(30 * 1000, Math.max(2 * 1000, prevTime))
+            }
+            timeoutHideTip = setTimeout(timeoutObj.callback, timeoutObj.delay);
         });
     }
+
+    $(function () {
+        var hoverInTime = 0;
+        getTip$dom().hover(function () {
+            // console.log('hoverIn')
+            hoverInTime = Date.now();
+            clearTimeout(timeoutHideTip);
+        }, function () {
+            // console.log('hoverOut')
+            if (timeoutObj) {
+                timeoutHideTip = setTimeout(timeoutObj.callback, Math.max(2000, (Date.now() - hoverInTime - timeoutObj.delay)));
+            }
+        });
+    })
+
 
     $(document).keydown(function (e) {
         if (e.keyCode == escKey) {
