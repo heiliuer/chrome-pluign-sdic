@@ -34,10 +34,11 @@
       "js": [
         "js/libs/jquery-2.0.0.min.js",
         "js/content_script_tmpl.js",
-        "js/content_script.js"
+        "js/content_script.js",
+        "js/dist/build.js"
       ],
       "run_at1": "document_start",
-      "run_at": "document_start"
+      "run_at": "document_end"
     }
   ]
 }
