@@ -41,12 +41,6 @@ class App extends React.Component<object, AppState> {
 
     async componentDidMount() {
         this.autoInputSelectData();
-
-        // FIXME for test
-        this.setState({
-            key: 'test'
-        })
-        this.fetchData('test');
     }
 
     onInput(key: string) {
