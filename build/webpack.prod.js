@@ -10,6 +10,23 @@ const packageJson = require('../package')
 module.exports = merge(common, {
     mode: 'production',
     devtool: 'source-map',
+    optimization: {
+        minimizer: [
+            new UglifyJSPlugin({
+                parallel: true,
+                sourceMap: true,
+                uglifyOptions: {
+                    // Eliminate comments
+                    comments: false,
+                    // Compression specific options
+                    compress: {
+                        // Drop console statements
+                        drop_console: true
+                    },
+                },
+            }),
+        ],
+    },
     plugins: [
         new CleanWebpackPlugin({
             cleanStaleWebpackAssets: false,
@@ -17,9 +34,6 @@ module.exports = merge(common, {
         new CopyPlugin([
             {from: path.resolve(__dirname, '../public')}
         ]),
-        new UglifyJSPlugin({
-            sourceMap: true
-        }),
         new ZipPlugin({
             filename: packageJson.name + '.zip',
             path: path.resolve(__dirname, '..'),
