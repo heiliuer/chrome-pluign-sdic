@@ -1,0 +1,46 @@
+{
+  "translation": [
+    "我"
+  ],
+  "basic": {
+    "uk-speech": "http:\/\/fanyi.youdao.com\/openapi.do?type=data&voice=true&version=1.2&key=27855339&keyfrom=mypydict&q=me&vt=1",
+    "us-phonetic": "mi",
+    "speech": "http:\/\/fanyi.youdao.com\/openapi.do?type=data&voice=true&version=1.2&key=27855339&keyfrom=mypydict&q=me&vt=1",
+    "phonetic": "miː",
+    "uk-phonetic": "miː",
+    "us-speech": "http:\/\/fanyi.youdao.com\/openapi.do?type=data&voice=true&version=1.2&key=27855339&keyfrom=mypydict&q=me&vt=2",
+    "explains": [
+      "n. 自我；极端自私的人；自我的一部分",
+      "pron. 我（宾格）",
+      "n. (Me)人名；(日)马(姓)；(朝)袂；(阿拉伯、柬、老)梅"
+    ]
+  },
+  "query": "me",
+  "errorCode": 0,
+  "web": [
+    {
+      "value": [
+        "ME",
+        "Me",
+        "위키백과 동음이의어 문서"
+      ],
+      "key": "Me"
+    },
+    {
+      "value": [
+        "Windows Me",
+        "Windows Me",
+        "윈도 미"
+      ],
+      "key": "Windows ME"
+    },
+    {
+      "value": [
+        "跟我学",
+        "Follow Me (E-Girlsの曲)",
+        "跟我来"
+      ],
+      "key": "Follow Me"
+    }
+  ]
+}

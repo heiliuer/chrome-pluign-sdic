@@ -1,0 +1,25 @@
+.word-card {
+  margin: 2px 0;
+  float: left;
+  width: 100%;
+}
+
+.card-title {
+  color: #cccccc;
+}
+
+.card-content_list {
+  color: #666;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    padding: 5px 4px;
+    border-bottom: 1px solid #eeeeee;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+@import '~antd/dist/antd.css';
+
+.App {
+  padding: 10px;
+}
+
+.xcp-action {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  text-align: right;
+  padding: 5px 8px 5px 0;
+  z-index: 1;
+}
+
+.copy_right {
+  color: #aaa;
+  font-size: 11px;
+  text-align: center;
+  width: 223px;
+}
+
+.quick-links {
+  a {
+    display: inline-block;
+    margin: 2px;
+  }
+}
+
+.button-search {
+  margin: 5px 0;
+}
