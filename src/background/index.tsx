@@ -3,6 +3,7 @@
  * 不允许用 eval
  */
 import jQuery from 'jquery'
+import {getValidSearchKey} from "../util";
 
 window.selectData = '';
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
@@ -26,7 +27,7 @@ chrome.runtime.onMessage.addListener(async (msg, sender, sendResponse) => {
             console.log('search_and_add_dom', msg)
             const key = msg.data;
             jQuery.ajax({
-                url: "http://fanyi.youdao.com/openapi.do?keyfrom=mypydict&doctype=json&version=1.2&key=27855339&type=data&q=" + encodeURIComponent(key),
+                url: "http://fanyi.youdao.com/openapi.do?keyfrom=mypydict&doctype=json&version=1.2&key=27855339&type=data&q=" + encodeURIComponent(getValidSearchKey(key)),
                 type: "get",
                 async: false, //异步请求无法 sendResponse
                 dataType: "json",
