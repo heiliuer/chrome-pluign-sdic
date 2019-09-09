@@ -1,27 +1,18 @@
-import Chrome from 'chrome'
+import Chrome from 'chrome';
 
-declare module "*.svg" {
+declare module '*.svg' {
     const content: any;
     export default content;
 }
 
-declare module "*.css" {
+declare module '*.css' {
     const content: any;
     export default content;
 }
 
-declare module "*.png";
+declare module '*.png';
 
-declare global {
-    const chrome: Chrome;
-
-    interface Window {
-        selectData: string
-    }
-}
-
-
-declare module ApiSearchResult {
+declare namespace ApiSearchResult {
 
     export interface Basic {
         'uk-speech': string;
@@ -46,4 +37,12 @@ declare module ApiSearchResult {
         web: Web[];
     }
 
+}
+
+declare global {
+    const chrome: Chrome;
+
+    interface Window {
+        selectData: string;
+    }
 }

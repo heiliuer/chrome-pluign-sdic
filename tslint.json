@@ -5,7 +5,19 @@
   ],
   "jsRules": {},
   "rules": {
-    "semicolon": true
+    "semicolon": true,
+    "quotemark": [
+      true,
+      "single"
+    ],
+    "no-namespace": false,
+    "object-literal-sort-keys": false,
+    "interface-name": false,
+    "no-console": false
   },
+  "include": [
+    "src//*.ts",
+    "src//*.tsc"
+  ],
   "rulesDirectory": []
 }
