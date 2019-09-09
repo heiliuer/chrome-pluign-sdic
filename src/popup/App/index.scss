@@ -1,7 +1,7 @@
 @import '~antd/dist/antd.css';
 
 .App {
-  padding: 10px;
+  padding: 10px 10px 20px;
 }
 
 .xcp-action {
@@ -17,16 +17,24 @@
   color: #aaa;
   font-size: 11px;
   text-align: center;
-  width: 223px;
-}
-
-.quick-links {
-  a {
-    display: inline-block;
-    margin: 2px;
-  }
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
 }
 
 .button-search {
   margin: 5px 0;
+}
+
+.clearfix {
+  zoom: 1;
+}
+.clearfix::before,
+.clearfix::after {
+  display: table;
+  content: '';
+}
+.clearfix::after {
+  clear: both;
 }

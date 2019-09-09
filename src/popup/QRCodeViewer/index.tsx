@@ -28,7 +28,7 @@ class QRCodeViewer extends React.Component<AppProps, AppState> {
     public render() {
         const key = this.props;
         return <Popover placement={'top'} trigger={'click'} content={<img width='180' src={`http://qr.liantu.com/api.php?text=` + key}/>}>
-            <img src='img/icon-qrcode.png' width='15px'/>
+            <img src={require('../../assets/img/icon-qrcode.png')} width='15px'/>
         </Popover>;
     }
 
