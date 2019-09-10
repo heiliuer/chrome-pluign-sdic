@@ -31,7 +31,7 @@ class App extends React.Component<object, AppState> {
         }
         const backPage = chrome.extension.getBackgroundPage();
         const selectData = backPage!.selectData;
-        if (selectData && selectData === this.state.key) {
+        if (selectData && selectData !== this.state.key) {
             this.setState({
                 key: selectData,
             });

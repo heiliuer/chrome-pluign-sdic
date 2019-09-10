@@ -1,5 +1,6 @@
 import React from 'react';
 import './index.scss';
+import {getValidSearchKey} from "../../util";
 
 interface AppProps {
     keyStr: string[];
@@ -40,14 +41,15 @@ class AudioControl extends React.Component<AppProps, AppState> {
         const {keyStr} = this.props;
         const {randomKey} = this.state;
         console.log('AudioControl keyStr', keyStr);
-        const validStr = keyStr.filter((k) => k && (/^[a-zA-Z0-9\s]+$/).test(k))[0];
+        const validStr = keyStr.filter((k) => k && (/^[-_a-zA-Z0-9\s]+$/).test(k))[0];
         console.log('validStr', validStr);
         if (!validStr) {
             return null;
         }
+        const regexStr = getValidSearchKey(validStr);
         return <div>
             <audio ref={(dom) => this.audio = dom}
-                   src={'http://dict.youdao.com/dictvoice?audio=' + validStr + '&_t=' + randomKey}/>
+                   src={'http://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(regexStr) + '&_t=' + randomKey}/>
             <img onMouseEnter={this.onMouseEnter} src={require('../../assets/img/voice.png')}
                  width='17'
                  height='17'
