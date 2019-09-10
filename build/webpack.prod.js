@@ -1,15 +1,15 @@
-const path = require('path');
-const ZipPlugin = require('zip-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin')
-const merge = require('webpack-merge');
-const common = require('./webpack.common.js');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const packageJson = require('../package')
+const path = require("path");
+const ZipPlugin = require("zip-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
+const merge = require("webpack-merge");
+const common = require("./webpack.common.js");
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
+const {CleanWebpackPlugin} = require("clean-webpack-plugin");
+const packageJson = require("../package");
 
 module.exports = merge(common, {
-    mode: 'production',
-    devtool: 'source-map',
+    mode: "production",
+    devtool: "source-map",
     optimization: {
         minimizer: [
             new UglifyJSPlugin({
@@ -20,8 +20,7 @@ module.exports = merge(common, {
                     comments: false,
                     // Compression specific options
                     compress: {
-                        // Drop console statements
-                        drop_console: true
+                        drop_console: !process.env.BUILD_TEST,
                     },
                 },
             }),
@@ -32,11 +31,11 @@ module.exports = merge(common, {
             cleanStaleWebpackAssets: false,
         }),
         new CopyPlugin([
-            {from: path.resolve(__dirname, '../public')}
+            {from: path.resolve(__dirname, "../public")},
         ]),
         new ZipPlugin({
-            filename: packageJson.name + '.zip',
-            path: path.resolve(__dirname, '..'),
-        })
+            filename: packageJson.name + ".zip",
+            path: path.resolve(__dirname, ".."),
+        }),
     ],
 });

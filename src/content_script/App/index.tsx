@@ -21,7 +21,6 @@ class App extends React.Component<object, AppState> {
         show: false,
     };
 
-    protected timer: number = 0;
     private currentMouseDom: HTMLElement | null = null;
     private timeoutHandlerCtrl: any = 0;
     private timeoutHideTip: any = 0;

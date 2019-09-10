@@ -1,19 +1,19 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const glob = require('glob');
-const pages = glob
-    .sync(`./src/**/index.tsx`)
-    .reduce((pages, path) => {
-        const chunk = path
-            .split('./src/')[1]
-            .split(`/index.tsx`)[0];
-        pages[chunk] = {
-            entry: `src/pages/${chunk}/index.tsx`,
-            template: path.replace(/.tsx/g, '.html'),
-            filename: `${chunk}.html`,
-        };
-        return pages;
-    }, {});
+// const glob = require('glob');
+// const pages = glob
+//     .sync(`./src/**/index.tsx`)
+//     .reduce((pages, path) => {
+//         const chunk = path
+//             .split('./src/')[1]
+//             .split(`/index.tsx`)[0];
+//         pages[chunk] = {
+//             entry: `src/pages/${chunk}/index.tsx`,
+//             template: path.replace(/.tsx/g, '.html'),
+//             filename: `${chunk}.html`,
+//         };
+//         return pages;
+//     }, {});
 
 // console.log('pages', pages);
 
